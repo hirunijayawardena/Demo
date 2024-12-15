@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:meals_app2/data/dummy_data.dart';
 import 'package:meals_app2/models/meal.dart';
@@ -6,6 +7,7 @@ import 'package:meals_app2/screens/categories.dart';
 import 'package:meals_app2/screens/filters.dart';
 import 'package:meals_app2/screens/meals.dart';
 import 'package:meals_app2/widgets/main_drawer.dart';
+import 'package:meals_app2/providers/meals_provider.dart';
 
 const kInitialFilters = {
   Filter.glutenFree: false,
@@ -14,16 +16,16 @@ const kInitialFilters = {
   Filter.vegan: false
 };
 
-class TabsScreen extends StatefulWidget {
+class TabsScreen extends ConsumerStatefulWidget { // This is the Stateful widget provided by the riverpod package
   const TabsScreen({super.key});
 
   @override
-  State<TabsScreen> createState() {
+  ConsumerState<TabsScreen> createState() {
     return _TabsScreenState();
   }
 }
 
-class _TabsScreenState extends State<TabsScreen> {
+class _TabsScreenState extends ConsumerState<TabsScreen> {
   int _selectedPageIndex = 0;
   final List<Meal> _favoriteMeals = [];
   Map<Filter, bool> _selectedFilters = kInitialFilters;
